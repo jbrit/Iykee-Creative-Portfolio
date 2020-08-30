@@ -1,7 +1,7 @@
 <template>
   <base-link
     :href="href ? href : '#'"
-    :class="['side-nav-link', 'my-auto', 'py-1', activeClass]"
+    :class="['side-nav-link', 'my-1', activeClass]"
   >
     <span class="side-nav-link__num">{{ number }}</span>
     <span class="side-nav-link__divider mx-3 d-inline-block"></span>

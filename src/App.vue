@@ -15,8 +15,7 @@
             <img
               class="ml-n2 ml-sm-n3 ml-md-n4 ml-lg-n5"
               src="./assets/images/iykee.svg"
-              alt=""
-              srcset=""
+              alt="Iykee's Logo"
             />
           </div>
         </div>
@@ -27,16 +26,7 @@
           <div
             class="col-12 col-lg-4 d-flex flex-column justify-content-start align-items-end"
           >
-            <div class="text-right f-48 pb-5">About</div>
-            <div class="my-auto">
-              <NavLink
-                :key="link.number"
-                v-for="link in nav_links"
-                :number="link.number"
-                :name="link.name"
-                :isActive="link.isActive"
-              ></NavLink>
-            </div>
+            <TheSideNav :nav_links="nav_links"></TheSideNav>
           </div>
         </div>
       </div>
@@ -51,13 +41,13 @@
 
 <script>
   import Home from "./views/Home.vue";
-  import NavLink from "./components/NavLink.vue";
+  import TheSideNav from "./components/TheSideNav.vue";
 
   export default {
     name: "App",
     components: {
       Home,
-      NavLink,
+      TheSideNav,
     },
     data() {
       return {
