@@ -1,5 +1,5 @@
 <template>
-  <Fragment>
+  <div class="d-flex flex-column justify-content-center py-5 h-100">
     <div class="f-24 mb-4 text-uppercase">Hi There, I'm</div>
     <div class="f-64 mb-3">Ikechukwu Okonkwo</div>
     <div class="f-24 f-blue mb-3">GRAPHICS + UI/UX DESIGNER</div>
@@ -35,14 +35,15 @@
         ></span>
       </BaseLink>
     </div>
-  </Fragment>
+  </div>
 </template>
 <script>
-  import { Fragment } from "vue-fragment";
+  import BaseLink from "../components/BaseLink.vue";
+
   export default {
     name: "Home",
     components: {
-      Fragment,
+      BaseLink,
     },
   };
 </script>

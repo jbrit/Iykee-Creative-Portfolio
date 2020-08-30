@@ -5,11 +5,11 @@
     @mouseleave="hideMouse"
     @mousemove="moveMouse"
   >
-    <div
-      style="height: 100vh; background-clip: padding-box"
-      class="px-2 px-sm-3 px-md-4 px-lg-5"
-    >
-      <div class="container h-100 d-flex flex-column">
+    <div class="px-2 px-sm-3 px-md-4 px-lg-5">
+      <div
+        style="min-height: 100vh;"
+        class="container h-100 d-flex flex-column"
+      >
         <div class="row">
           <div class="col-12 pt-4">
             <img
@@ -21,9 +21,7 @@
           </div>
         </div>
         <div style="flex-grow: 1" class="row py-5">
-          <div
-            class="col-12 col-lg-8 d-flex flex-column justify-content-center py-5"
-          >
+          <div class="col-12 col-lg-8">
             <Home></Home>
           </div>
           <div
@@ -31,26 +29,13 @@
           >
             <div class="text-right f-48 pb-5">About</div>
             <div class="my-auto">
-              <BaseLink href="#" class="side-nav-link active my-auto py-1">
-                <span class="side-nav-link__num">00</span>
-                <span class="side-nav-link__divider mx-3 d-inline-block"></span>
-                About
-              </BaseLink>
-              <BaseLink href="#" class="side-nav-link py-1">
-                <span class="side-nav-link__num">01</span>
-                <span class="side-nav-link__divider mx-3 d-inline-block"></span>
-                Projects
-              </BaseLink>
-              <BaseLink href="#" class="side-nav-link py-1">
-                <span class="side-nav-link__num">02</span>
-                <span class="side-nav-link__divider mx-3 d-inline-block"></span>
-                Resume
-              </BaseLink>
-              <BaseLink href="#" class="side-nav-link py-1">
-                <span class="side-nav-link__num">03</span>
-                <span class="side-nav-link__divider mx-3 d-inline-block"></span>
-                Contact
-              </BaseLink>
+              <NavLink
+                :key="link.number"
+                v-for="link in nav_links"
+                :number="link.number"
+                :name="link.name"
+                :isActive="link.isActive"
+              ></NavLink>
             </div>
           </div>
         </div>
@@ -61,21 +46,28 @@
       ref="mouseIndicator"
       :class="{ hovering: this.$root.$data.mouseHoveringLink }"
     ></div>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
-  import HelloWorld from "./components/HelloWorld.vue";
-  import BaseLink from "./components/BaseLink.vue";
   import Home from "./views/Home.vue";
+  import NavLink from "./components/NavLink.vue";
 
   export default {
     name: "App",
     components: {
       Home,
-      HelloWorld,
-      BaseLink,
+      NavLink,
+    },
+    data() {
+      return {
+        nav_links: [
+          { name: "About", number: "00", isActive: true },
+          { name: "Projects", number: "01" },
+          { name: "Resume", number: "02" },
+          { name: "Contact", number: "03" },
+        ],
+      };
     },
     methods: {
       showMouse() {
