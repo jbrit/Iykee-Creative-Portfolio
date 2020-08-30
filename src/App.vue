@@ -21,12 +21,12 @@
         </div>
         <div style="flex-grow: 1" class="row py-5">
           <div class="col-12 col-lg-8">
-            <Home></Home>
+            <router-view></router-view>
           </div>
           <div
             class="col-12 col-lg-4 d-flex flex-column justify-content-start align-items-end"
           >
-            <TheSideNav :nav_links="nav_links"></TheSideNav>
+            <TheSideNav :title="title" :nav_links="nav_links"></TheSideNav>
           </div>
         </div>
       </div>
@@ -40,23 +40,22 @@
 </template>
 
 <script>
-  import Home from "./views/Home.vue";
   import TheSideNav from "./components/TheSideNav.vue";
 
   export default {
     name: "App",
     components: {
-      Home,
       TheSideNav,
     },
     data() {
       return {
         nav_links: [
-          { name: "About", number: "00", isActive: true },
-          { name: "Projects", number: "01" },
-          { name: "Resume", number: "02" },
-          { name: "Contact", number: "03" },
+          { name: "About", number: "00", to: "/" },
+          { name: "Projects", number: "01", to: "projects" },
+          { name: "Resume", number: "02", to: "resume" },
+          { name: "Contact", number: "03", to: "contact" },
         ],
+        title: "About",
       };
     },
     methods: {

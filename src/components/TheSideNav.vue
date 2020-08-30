@@ -1,13 +1,13 @@
 <template>
   <Fragment>
-    <div class="text-right f-48 pb-5">About</div>
+    <div class="text-right f-48 pb-5">{{ title }}</div>
     <div class="my-auto">
       <NavLink
         :key="link.number"
         v-for="link in nav_links"
         :number="link.number"
         :name="link.name"
-        :isActive="link.isActive"
+        :to="link.to"
       ></NavLink>
     </div>
   </Fragment>
@@ -24,6 +24,7 @@
     },
     props: {
       nav_links: Array,
+      title: String,
     },
   };
 </script>
