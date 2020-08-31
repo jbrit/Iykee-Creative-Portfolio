@@ -307,7 +307,7 @@
 
     &:focus {
       border-color: var(--color-blue);
-      background-color: lighten($color: #303338, $amount: 5);
+      background-color: lighten($color: #303338, $amount: 9);
       color: var(--color-white);
     }
   }

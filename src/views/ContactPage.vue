@@ -30,7 +30,9 @@
         rows="4"
       ></textarea>
     </div>
-    <button type="submit" class="btn btn-block btn-primary">Submit</button>
+    <button type="submit" class="btn btn-block btn-primary text-uppercase">
+      Send
+    </button>
   </form>
 </template>
 
