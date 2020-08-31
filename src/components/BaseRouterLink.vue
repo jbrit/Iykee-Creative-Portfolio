@@ -4,6 +4,7 @@
     :class="aClass"
     @mouseover.native="hoveredMouse"
     @mouseleave.native="outMouse"
+    exact
   >
     <slot></slot>
   </router-link>

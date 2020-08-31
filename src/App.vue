@@ -251,4 +251,13 @@
       transition-delay: 0.35s;
     }
   }
+  .form-control {
+    @include input-field;
+    border: none;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 18px;
+    line-height: 22px;
+    min-height: 46px;
+  }
 </style>
