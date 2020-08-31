@@ -17,6 +17,10 @@
               src="./assets/images/iykee.svg"
               alt="Iykee's Logo"
             />
+            <span
+              style="height: 40px; width: 40px; border-radius: 50%"
+              class="d-inline-block ml-auto bg-dark"
+            ></span>
           </div>
         </div>
         <div style="flex-grow: 1" class="row py-5">
@@ -24,7 +28,7 @@
             <router-view></router-view>
           </div>
           <div
-            class="col-12 col-lg-4 d-flex flex-column justify-content-start align-items-end"
+            class="col-12 col-lg-4 d-none d-lg-flex flex-column justify-content-start align-items-end"
           >
             <TheSideNav :title="title" :nav_links="nav_links"></TheSideNav>
           </div>
@@ -257,10 +261,18 @@
   .form-control {
     @include input-field;
     border: none;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    border-bottom: 1px solid transparent;
+    padding-top: 16px;
+    padding-bottom: 16px;
     font-size: 18px;
     line-height: 22px;
     min-height: 46px;
+    transition: border-color 0.5s ease;
+
+    &:focus {
+      border-color: var(--color-blue);
+      background-color: lighten($color: #303338, $amount: 5);
+      color: var(--color-white);
+    }
   }
 </style>
