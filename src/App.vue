@@ -10,17 +10,26 @@
         style="min-height: 100vh;"
         class="container h-100 d-flex flex-column"
       >
-        <div class="row">
+        <div
+          ref="menu"
+          class="menu-overlay row d-flex align-items-center justify-content-center position-fixed m-0 w-100 h-100"
+        >
+          <div class="f-48 fw-600">Menu Content</div>
+        </div>
+        <div style="z-index: 2" class="row">
           <div class="col-12 pt-4">
             <img
+              ref="img"
               class="ml-n2 ml-sm-n3 ml-md-n4 ml-lg-n5"
               src="./assets/images/iykee.svg"
               alt="Iykee's Logo"
             />
-            <span
-              style="height: 40px; width: 40px; border-radius: 50%"
-              class="d-inline-block ml-auto bg-dark"
-            ></span>
+            <base-link
+              @click.native="menu_opened ? menuClose() : menuOpen()"
+              href="#"
+              style="height: 40px; width: 40px; border-radius: 50%; vertical-align: middle; float: right"
+              class="d-inline-block ml-auto bg-dark mr-n2 mr-sm-n3 mr-md-n4 mr-lg-0"
+            ></base-link>
           </div>
         </div>
         <div style="flex-grow: 1" class="row py-5">
@@ -45,11 +54,27 @@
 
 <script>
   import TheSideNav from "./components/TheSideNav.vue";
+  import BaseLink from "./components/BaseLink.vue";
+  import { gsap } from "gsap";
+  const menuTL = gsap.timeline({ duration: 1, paused: true });
 
   export default {
     name: "App",
+    mounted() {
+      const { menu } = this.$refs;
+      menuTL.eventCallback("onStart", () => {
+        this.menu_opened = true;
+      });
+      menuTL.eventCallback("onReverseComplete", () => {
+        this.menu_opened = false;
+      });
+      menuTL.from(menu, {
+        translateX: "100%",
+      });
+    },
     components: {
       TheSideNav,
+      BaseLink,
     },
     data() {
       return {
@@ -60,6 +85,7 @@
           { name: "Contact", number: "03", to: "contact" },
         ],
         title: "About",
+        menu_opened: false,
       };
     },
     methods: {
@@ -73,6 +99,12 @@
         const mouseIndicator = this.$refs.mouseIndicator;
         mouseIndicator.style.top = `${e.clientY - 4}px`;
         mouseIndicator.style.left = `${e.clientX - 4}px`;
+      },
+      menuOpen() {
+        menuTL.play();
+      },
+      menuClose() {
+        menuTL.reverse();
       },
     },
   };
@@ -140,6 +172,9 @@
     &325 {
       font-weight: 325;
     }
+    &600 {
+      font-weight: 600;
+    }
   }
   .minh-100 {
     min-height: 100%;
@@ -147,7 +182,7 @@
   }
   body {
     background: #1d1d1d;
-    font-family: Gotham, Raleway, sans-serif;
+    font-family: Raleway, sans-serif;
     color: var(--color-white);
   }
   ::selection {
@@ -176,6 +211,7 @@
     width: 8px;
     border-radius: 50%;
     background: white;
+    z-index: 5000;
     &::before {
       content: "";
       position: absolute;
@@ -274,5 +310,12 @@
       background-color: lighten($color: #303338, $amount: 5);
       color: var(--color-white);
     }
+  }
+  // Menu
+  .menu-overlay {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: darken($color: #303338, $amount: 12);
   }
 </style>
