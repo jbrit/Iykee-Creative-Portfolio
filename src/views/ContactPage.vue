@@ -33,8 +33,9 @@
     <button type="submit" class="btn btn-block btn-primary">Submit</button>
   </form>
 </template>
+
 <script>
   export default {
-    name: "Contact",
+    name: "ContactPage",
   };
 </script>

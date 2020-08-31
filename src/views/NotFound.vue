@@ -8,7 +8,12 @@
     >
       Page Not Found
     </div>
-    <base-router-link class="f-18 text-center" to="/">Go Home</base-router-link>
+    <base-router-link
+      @click.native="clickedMouse"
+      class="f-18 text-center"
+      to="/"
+      >Go Home</base-router-link
+    >
 
     <div style="opacity: 0.1" class="f-64 text-right">}</div>
   </div>
@@ -20,6 +25,11 @@
     name: "NotFound",
     components: {
       BaseRouterLink,
+    },
+    methods: {
+      clickedMouse() {
+        this.$root.$data.mouseHoveringLink = false;
+      },
     },
   };
 </script>

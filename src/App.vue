@@ -104,6 +104,9 @@
     @include borderadius;
     background-color: var(--color-secondary);
     color: var(--color-white);
+    &:focus {
+      box-shadow: none;
+    }
   }
   .f- {
     // Size
