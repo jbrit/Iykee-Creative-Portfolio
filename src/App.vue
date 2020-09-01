@@ -12,9 +12,19 @@
       >
         <div
           ref="menu"
-          class="menu-overlay row d-flex align-items-center justify-content-center position-fixed m-0 w-100 h-100"
+          class="menu-overlay row d-flex d-lg-none flex-column align-items-center justify-content-center position-fixed m-0 w-100 h-100"
         >
-          <div class="f-48 fw-600">Menu Content</div>
+          <!-- TODO: Base Router Link -->
+          <router-link
+            v-for="link in nav_links"
+            :key="link.number"
+            ref="reveal"
+            class="f-36 fw-600 my-3 mobile-nav-link text-reveal"
+            :to="link.to"
+            @click.native="menuClose"
+          >
+            {{ link.name }}
+          </router-link>
         </div>
         <div style="z-index: 2" class="row">
           <div class="col-12 pt-4">
@@ -24,12 +34,15 @@
               src="./assets/images/iykee.svg"
               alt="Iykee's Logo"
             />
+            <!--TODO: Change hamburger Icon and Style -->
             <base-link
               @click.native="menu_opened ? menuClose() : menuOpen()"
               href="#"
-              style="height: 40px; width: 40px; border-radius: 50%; vertical-align: middle; float: right"
-              class="d-inline-block ml-auto bg-dark mr-n2 mr-sm-n3 mr-md-n4 mr-lg-0"
-            ></base-link>
+              class="hamburger d-inline-flex align-items-center justify-content-center d-lg-none ml-auto shadow-sm mr-n2 mr-sm-n3 mr-md-n4 mr-lg-0"
+              ><span style="font-weight: 300; transform: translateY(-5%)"
+                >=</span
+              ></base-link
+            >
           </div>
         </div>
         <div style="flex-grow: 1" class="row py-5">
@@ -61,15 +74,26 @@
   export default {
     name: "App",
     mounted() {
-      const { menu } = this.$refs;
-      menuTL.eventCallback("onStart", () => {
-        this.menu_opened = true;
-      });
-      menuTL.eventCallback("onReverseComplete", () => {
-        this.menu_opened = false;
-      });
-      menuTL.from(menu, {
-        translateX: "100%",
+      this.$nextTick(function() {
+        let { menu, reveal } = this.$refs;
+        reveal = ".text-reveal";
+        menuTL.eventCallback("onStart", () => {
+          this.menu_opened = true;
+        });
+        menuTL.eventCallback("onReverseComplete", () => {
+          this.menu_opened = false;
+        });
+        menuTL
+          .from(menu, {
+            translateX: "100%",
+          })
+          .from(reveal, {
+            duration: 1.15,
+            stagger: 0,
+            opacity: 0,
+            translateY: "-100%",
+            "--reveal-height": "100%",
+          });
       });
     },
     components: {
@@ -154,6 +178,10 @@
       font-size: 24px;
       line-height: 28px;
       letter-spacing: -0.02em;
+    }
+    &36 {
+      font-size: 36px;
+      line-height: 42px;
     }
     &48 {
       font-size: 48px;
@@ -312,10 +340,48 @@
     }
   }
   // Menu
+  .hamburger {
+    background-color: darken($color: #303338, $amount: 11);
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    vertical-align: middle;
+    float: right;
+    font-size: 80px;
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
   .menu-overlay {
     top: 0;
     left: 0;
     z-index: 1;
     background-color: darken($color: #303338, $amount: 12);
+  }
+  .mobile-nav-link {
+    color: darken($color: #303338, $amount: 12);
+    text-shadow: -0.4px -0.4px 0 #fff, 0.4px -0.4px 0 #fff, -0.4px 0.4px 0 #fff,
+      0.4px 0.4px 0 #fff;
+    transition: color 0.5s ease;
+    font-weight: 400;
+    &:hover,
+    &.active {
+      color: transparent;
+    }
+  }
+  .text-reveal {
+    position: relative;
+    --reveal-height: 0%;
+    &::after {
+      content: "";
+      position: absolute;
+      height: var(--reveal-height);
+      width: 100%;
+      background-color: darken($color: #303338, $amount: 12);
+      top: 0;
+      left: 0;
+      transform-origin: top;
+    }
   }
 </style>
