@@ -3,7 +3,7 @@
     <div
       v-for="position in resume_items"
       :key="position.company + position.title"
-      class="pl-3 pt-4"
+      class="resume-item pl-3 pt-4"
     >
       <div class="fw-500 f-18">{{ position.company }}</div>
       <div class="fw-500 f-14">
@@ -105,6 +105,19 @@
       left: -7.75px;
       border: 7px solid transparent;
       border-top-color: white;
+    }
+  }
+  .resume-item {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: -8.25px;
+      height: 15px;
+      width: 15px;
+      background-color: white;
+      border-radius: 50%;
     }
   }
   .resume-link {
