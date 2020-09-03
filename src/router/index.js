@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Resume from "../views/Resume.vue";
 import ContactPage from "../views/ContactPage.vue";
 import NotFound from "../views/NotFound.vue";
 
@@ -13,6 +14,14 @@ const routes = [
     component: Home,
     meta: {
       title: "About",
+    },
+  },
+  {
+    path: "/resume",
+    name: "Resume",
+    component: Resume,
+    meta: {
+      title: "Resume",
     },
   },
   {

@@ -87,7 +87,6 @@
             reveal,
             {
               duration: 1,
-              stagger: 0,
               opacity: 0,
               translateY: "-100%",
               "--reveal-height": "100%",
@@ -173,7 +172,7 @@
     color: var(--color-white);
   }
   @mixin input-field {
-    @include borderadius;
+    border-radius: 0.25rem;
     background-color: var(--color-secondary);
     color: var(--color-white);
     &:focus {
@@ -182,6 +181,10 @@
   }
   .f- {
     // Size
+    &14 {
+      font-size: 14px;
+      line-height: 21px;
+    }
     &18 {
       font-size: 18px;
       line-height: 25px;
@@ -211,6 +214,9 @@
   .fw- {
     &325 {
       font-weight: 325;
+    }
+    &500 {
+      font-weight: 500;
     }
     &600 {
       font-weight: 600;
