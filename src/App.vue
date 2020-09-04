@@ -47,7 +47,9 @@
         </div>
         <div style="flex-grow: 1" class="row py-5">
           <div class="col-12 col-lg-8">
-            <router-view></router-view>
+            <transition name="fade" mode="out-in">
+              <router-view></router-view>
+            </transition>
           </div>
           <div
             class="col-12 col-lg-4 d-none d-lg-flex flex-column justify-content-start align-items-end"
@@ -402,5 +404,17 @@
       left: 0;
       transform-origin: top;
     }
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); // cubic-bezier(0.165, 0.84, 0.44, 1)
+  }
+  .fade-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 </style>

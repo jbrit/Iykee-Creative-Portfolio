@@ -2,7 +2,7 @@ module.exports = {
   // ...other vue-cli plugin options...
   pwa: {
     name: "Iykee",
-    themeColor: "##2f80ed",
+    themeColor: "#2f80ed",
     msTileColor: "#000000",
     appleMobileWebAppCapable: "yes",
     appleMobileWebAppStatusBarStyle: "black",

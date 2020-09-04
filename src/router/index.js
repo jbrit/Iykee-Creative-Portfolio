@@ -49,4 +49,9 @@ const router = new VueRouter({
   linkExactActiveClass: "active",
 });
 
+router.afterEach((to, from) => {
+  console.log(to);
+  console.log(from);
+});
+
 export default router;
