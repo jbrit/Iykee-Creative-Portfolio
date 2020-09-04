@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store";
 import Home from "../views/Home.vue";
 import Resume from "../views/Resume.vue";
 import ContactPage from "../views/ContactPage.vue";
@@ -37,7 +38,7 @@ const routes = [
     name: "NotFound",
     component: NotFound,
     meta: {
-      title: "",
+      title: "404",
     },
   },
 ];
@@ -50,8 +51,8 @@ const router = new VueRouter({
 });
 
 router.afterEach((to, from) => {
-  console.log(to);
-  console.log(from);
+  from;
+  store.commit("updateTitle", to.meta.title);
 });
 
 export default router;

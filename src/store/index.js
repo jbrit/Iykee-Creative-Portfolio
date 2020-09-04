@@ -5,11 +5,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
+    title: "",
   },
   mutations: {
     updateTitle(state, new_title) {
-      state.tile = new_title;
+      state.title = new_title;
     },
   },
 });

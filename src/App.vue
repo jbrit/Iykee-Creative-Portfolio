@@ -109,7 +109,6 @@
           { name: "Resume", number: "02", to: "resume" },
           { name: "Contact", number: "03", to: "contact" },
         ],
-        title: "About",
         menu_opened: false,
       };
     },
@@ -142,6 +141,11 @@
       menuClose() {
         // if (!menuTL.isActive())
         menuTL.reverse() && (this.menu_opened = false);
+      },
+    },
+    computed: {
+      title() {
+        return this.$store.state.title;
       },
     },
   };
@@ -411,10 +415,10 @@
   }
   .fade-enter {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateX(-50%);
   }
   .fade-leave-to {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateX(-100%);
   }
 </style>
