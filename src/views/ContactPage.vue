@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="h-100 d-flex flex-column justify-content-center"
-    action="mailto:ojo.ajibola@lmu.edu.ng"
-  >
+  <form class="h-100 d-flex flex-column justify-content-center" action="#">
     <div class="form-group">
       <label class="sr-only" for="name">Full Name</label>
       <input
